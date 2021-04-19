@@ -1,4 +1,5 @@
-
+const diceRoll = require('./diceRoll');
+const roll = new diceRoll.DiceRoll();
 
 let player = "Player";
 
@@ -8,8 +9,10 @@ class SnakeAndLadder{
     }
 
     play(){
-       return "Game Starts!\nYou are at position :" + this.start;
+       console.log("Game Starts!\nYou are at position :" + this.start);
+
+       return roll.diceRoll();
     }
 }
 
-module.exports = {SnakeAndLadder}
+module.exports = {SnakeAndLadder} 

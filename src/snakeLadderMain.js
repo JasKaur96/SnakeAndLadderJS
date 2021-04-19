@@ -10,4 +10,4 @@ class SnakeAndLadderMain{
 }
 
 let game = new SnakeAndLadderMain();
-console.log(game.display());
+console.log(game.display()); 
