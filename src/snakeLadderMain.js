@@ -6,10 +6,8 @@ class SnakeAndLadderMain{
     display(){
         console.log("*****Welcome to snake And Ladder Game!*****");   
         let snakeGame = new snakeLadder.SnakeAndLadder(start);
-    // players(player1Position,player2Position)
-        // let snakeGame = new snakeLadder.Players();
-      
-        return snakeGame.players();
+        console.log( snakeGame.players())
+        return snakeGame.playerResult();
     }
 }
 

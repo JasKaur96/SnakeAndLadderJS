@@ -13,25 +13,28 @@ class SnakeAndLadder{
     players(){
         console.log("Game Starts!\nYou are at position :" + this.start);
        
-        while ((player1Position < 20) || (player2Position < 20)) {
-            console.log("\nPlayer1's Turn:");
-            dice = roll.diceRoll();
-            option = roll.optionCheck();
-            console.log("Dice Rolled : " +dice);
-            player1Position = this.play(option,dice,player1Position);
-            count1++;
-
-            console.log("\nPlayer2's Turn:");
-            dice = roll.diceRoll();
-            option = roll.optionCheck();
-            console.log("Dice Rolled : " +dice);
-            player2Position = this.play(option,dice,player2Position);
-            count2++;
-
-            this.playerResult(player1Position,player2Position,count1,count2)
-      
+        while ((player1Position >= 0 && player1Position < 20) || (player2Position >= 0 && player2Position < 20)) {
+           
+                console.log("\nPlayer1's Turn:");
+                dice = roll.diceRoll();
+                option = roll.optionCheck();
+                console.log("Dice Rolled : " +dice);
+                player1Position = this.play(option,dice,player1Position);
+                count1++;
+           
+            if(player1Position == 20 ){break;}
+           
+                console.log("\nPlayer2's Turn:");
+                dice = roll.diceRoll();
+                option = roll.optionCheck();
+                console.log("Dice Rolled : " +dice);
+                player2Position = this.play(option,dice,player2Position);
+                count2++;
+            
+            if(player2Position == 20 ){break;}
         }
-       
+        return [player1Position,player2Position,count1,count2];
+      
     }
 
     play(option,dice,playerPosition){
@@ -60,7 +63,7 @@ class SnakeAndLadder{
         return playerPosition;
     }
 
-    playerResult(player1Position,player2Position,count1,count2){
+    playerResult(){
         console.log("\nPlayer1's Dice Rolled "+count1+" times.\nPlayer2's Dice Rolled "+count2+" times.")
 		if(player1Position == 20){
 			console.log("\nCongratulations!!! Player1 Won!");
