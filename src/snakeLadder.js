@@ -1,5 +1,7 @@
 const diceRoll = require('./diceRoll');
 const roll = new diceRoll.DiceRoll();
+const optioncheck = require('./optionCheck');
+const opCheck = new optioncheck.OptionCheck();
 let playerPosition =0;
 let player = "Player";
 let dice=0;
@@ -11,7 +13,7 @@ class SnakeAndLadder{
 
     play(){
         console.log("Game Starts!\nYou are at position :" + this.start);
-          while (playerPosition <= 100) {
+          while (playerPosition >= 0 && playerPosition < 100) {
             dice = roll.diceRoll();
             option = roll.optionCheck();
             console.log("\nDice Rolled : " +dice);
@@ -20,19 +22,18 @@ class SnakeAndLadder{
                 case 1: 
                     playerPosition += dice; 
                     console.log("Yeah! You got a Ladder. ");
+                    if(playerPosition > 100) {
+                        playerPosition -= dice;					
+                    }
                     break;
                 case 2:
-                    if(playerPosition >= 0){
-                        playerPosition -= dice;                
-                        console.log("Oh No! Snake bit you. ");
-                        break;
-                    }
-                    else{
+                    playerPosition -= dice;               
+                    console.log("Oh No! Snake bit you. ");
+                    if(playerPosition < 0){
                         playerPosition = 0;                
                         console.log("Oh No! Player at position Zero. ");
-                        break;
                     }
-                        
+                    break;   
                 case 3:               
                     console.log("Pass the chance. ");
                     break;
@@ -40,7 +41,14 @@ class SnakeAndLadder{
             console.log("Your position is : " +playerPosition);
               
         }
+        this.playerResult(playerPosition)
         return playerPosition;
+    }
+
+    playerResult(playerPosition){
+		if(playerPosition == 100){
+			console.log("\nCongratulations!!! You Won!");
+		}
     }
 }
 
