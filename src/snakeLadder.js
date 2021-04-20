@@ -4,7 +4,7 @@ const optioncheck = require('./optionCheck');
 const opCheck = new optioncheck.OptionCheck();
 let playerPosition =0;
 let player = "Player";
-let dice=0;
+let dice=0, count =0;
 let option =0;
 class SnakeAndLadder{
     constructor(start){
@@ -17,7 +17,7 @@ class SnakeAndLadder{
             dice = roll.diceRoll();
             option = roll.optionCheck();
             console.log("\nDice Rolled : " +dice);
-     
+            count++;
             switch(option){
                 case 1: 
                     playerPosition += dice; 
@@ -41,11 +41,12 @@ class SnakeAndLadder{
             console.log("Your position is : " +playerPosition);
               
         }
-        this.playerResult(playerPosition)
+        this.playerResult(playerPosition,count)
         return playerPosition;
     }
 
-    playerResult(playerPosition){
+    playerResult(playerPosition,count){
+        console.log("\nDice Rolled "+count+" times.")
 		if(playerPosition == 100){
 			console.log("\nCongratulations!!! You Won!");
 		}
